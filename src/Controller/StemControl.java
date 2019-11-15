@@ -113,12 +113,14 @@ public class StemControl {
                 + " `lastname`, `loanAmount`, `loanDate`, `noOfDaysDue`, `contact`,"
                 + " `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         ps =con.prepareStatement(query);
-        ps.setString(1, user.getUsername());
-        ps.setString(2, user.getFirstname());
-        ps.setString(3, user.getLastname());
-        ps.setString(4, user.getEmail());
-        ps.setString(5, user.getPhysicalAddress());
-        ps.setString(6, usertype);
+        ps.setInt(1, customernumber);
+        ps.setString(2,firstname);
+        ps.setString(3, lastname);
+        ps.setDouble(4,loanAmount);
+        ps.setDate(5,loanDate);
+        ps.setInt(6, noOfDaysDue);
+        ps.setInt(7, contact);
+        ps.setString(8,status);
         ps.executeUpdate();
     }
  
