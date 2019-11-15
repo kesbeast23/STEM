@@ -28,6 +28,16 @@ public class StemControl {
         
         return rs;
     }
+     public static ResultSet loginCustomers(int customernumber,String password) throws SQLException{
+        con = DBConnect.getDatabaseConnection();
+        String query = "SELECT `customernumber`,`password` FROM `customer` WHERE customernumber=? and password=?";
+        ps =con.prepareStatement(query);
+        ps.setInt(1, customernumber);
+        ps.setString(2, password);
+        rs=ps.executeQuery();
+        
+        return rs;
+     }
     public static void collectCustomerData(int customernumber,String firstname,String lastname,Date date) throws SQLException{
         Customer customer = new Customer(customernumber,date,firstname,lastname);
         addCustomerToDatabase(customer);
@@ -95,6 +105,20 @@ public class StemControl {
         String query = "delete from user where username=?";
         ps =con.prepareStatement(query);
         ps.setString(1, username);
+        ps.executeUpdate();
+    }
+    public static void faciliateLoan(int customernumber,String firstname,String lastname,Double loanAmount,Date loanDate,int noOfDaysDue,int contact,String status) throws SQLException{
+        con = DBConnect.getDatabaseConnection();
+        String query = "INSERT INTO `loan` (`customernumber`, `firstname`,"
+                + " `lastname`, `loanAmount`, `loanDate`, `noOfDaysDue`, `contact`,"
+                + " `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        ps =con.prepareStatement(query);
+        ps.setString(1, user.getUsername());
+        ps.setString(2, user.getFirstname());
+        ps.setString(3, user.getLastname());
+        ps.setString(4, user.getEmail());
+        ps.setString(5, user.getPhysicalAddress());
+        ps.setString(6, usertype);
         ps.executeUpdate();
     }
  
