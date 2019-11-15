@@ -1,15 +1,20 @@
 
 package view;
 
+import Controller.StemControl;
 import DatabaseConnection.DBConnect;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,6 +28,7 @@ public class LoanAdmin extends javax.swing.JFrame {
      */
     public LoanAdmin() {
         initComponents();
+        table_update();
     }
 
     @SuppressWarnings("unchecked")
@@ -295,8 +301,9 @@ public class LoanAdmin extends javax.swing.JFrame {
                     v2.add(rs.getString("firstname"));
                     v2.add(rs.getString("lastname"));
                     v2.add(rs.getInt("loanAmount"));
-                    v2.add(rs.getDate("date"));
+                    v2.add(rs.getDate("loanDate"));
                     v2.add(rs.getInt("noOfDaysDue"));
+                    v2.add(rs.getInt("contact"));
                     v2.add(rs.getString("status"));
                 }
                 Df.addRow(v2);
@@ -330,8 +337,11 @@ public class LoanAdmin extends javax.swing.JFrame {
             Date date = new Date(sdf.parse(strDate).getTime());
 
             try {
-                StemControl.collectCustomerData(Integer.valueOf(txtcustomernumber.getText()),txtfirstname.getText(), txtlastname.getText(), date);
-                JOptionPane.showMessageDialog(this, "Account Created");
+                StemControl.faciliateLoan(Integer.valueOf(txtcustomernumber.getText()),
+                        txtfirstname.getText() , txtlastname.getText(),Double.valueOf(txtloanamount.getText()),
+                        date, Integer.valueOf(txtDaysDue.getText()), Integer.valueOf(txtcontact.getText()),
+                        String.valueOf(jComboBox1.getSelectedItem()));
+                JOptionPane.showMessageDialog(this, "Loan Facilitated");
                 table_update();
 
                 txtcustomernumber.setText("");
