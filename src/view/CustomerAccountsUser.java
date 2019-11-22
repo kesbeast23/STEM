@@ -229,7 +229,7 @@ public class CustomerAccountsUser extends javax.swing.JFrame {
         
         try {
             con = DBConnect.getDatabaseConnection();
-            insert = con.prepareStatement("SELECT `customernumber`, `firstname`, `surname`, `date` FROM `customer`");
+            insert = con.prepareStatement("SELECT `customernumber`, `firstname`, `surname`, `date` FROM `customer` ORDER BY `customer`.`date` DESC");
             ResultSet rs = insert.executeQuery();
             ResultSetMetaData Rss = rs.getMetaData();
             c = Rss.getColumnCount();
