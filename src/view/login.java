@@ -121,6 +121,7 @@ public class login extends javax.swing.JFrame {
                     AdminHome a = new AdminHome();
                     a.setVisible(true);
                     this.setVisible(false);
+                    
                 }else if(jComboBox1.getSelectedIndex()==1){
                     UserHome u = new UserHome();
                     u.setVisible(true);

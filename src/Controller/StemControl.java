@@ -7,6 +7,12 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import model.*;
 import DatabaseConnection.DBConnect;
+import java.io.*;
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.List;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime; 
 /**
  *
  * @author Kesego
@@ -26,6 +32,7 @@ public class StemControl {
         ps.setString(3, usertype);
         rs=ps.executeQuery();
         
+        transationlog(username);
         return rs;
     }
      public static ResultSet loginCustomers(int customernumber,String password) throws SQLException{
@@ -35,7 +42,8 @@ public class StemControl {
         ps.setInt(1, customernumber);
         ps.setString(2, password);
         rs=ps.executeQuery();
-        
+        String a=String.valueOf(customernumber);
+        transationlog(a);
         return rs;
      }
     public static void collectCustomerData(int customernumber,String firstname,String lastname,Date date) throws SQLException{
@@ -237,4 +245,19 @@ public class StemControl {
         rs=ps.executeQuery();
         return rs;
     }
+    public static void transationlog(String username) {
+    try {
+        //"C:\\Users\\Kesego\\Documents\\NetBeansProjects\\STEM\\src\\view\\log.txt"
+        List<String> lines = Files.readAllLines(Paths.get("C:\\Users\\Kesego\\Documents\\NetBeansProjects\\STEM\\src\\view\\log.txt"));
+                // Add some more data.
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();  
+        lines.add(dtf.format(now)+" :"+username);
+                //Write data into another file.
+        Files.write(Paths.get("C:\\Users\\Kesego\\Documents\\NetBeansProjects\\STEM\\src\\view\\log.txt"), lines);
+        System.out.println("Successfully wrote to the file.");
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+    }
+  }
 }
