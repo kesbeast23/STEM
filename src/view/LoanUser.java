@@ -21,12 +21,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Kesego
  */
-public class LoanAdmin extends javax.swing.JFrame {
+public class LoanUser extends javax.swing.JFrame {
 
     /**
-     * Creates new form Loan
+     * Creates new form LoanUser
      */
-    public LoanAdmin() {
+    public LoanUser() {
         initComponents();
         table_update();
     }
@@ -35,8 +35,6 @@ public class LoanAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -58,39 +56,11 @@ public class LoanAdmin extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "loan Id", "CustomerNumber", "firstname", "lastname", "Loan Amount", "Loan Date", "Days Due", "Contact", "Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Loan"));
 
@@ -156,7 +126,7 @@ public class LoanAdmin extends javax.swing.JFrame {
 
         jLabel8.setText("Contact");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "waiting", "approved", "rejected", "overdue" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "waiting", "rejected", "overdue" }));
 
         jLabel9.setText("Status");
 
@@ -242,6 +212,36 @@ public class LoanAdmin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "loan Id", "CustomerNumber", "firstname", "lastname", "Loan Amount", "Loan Date", "Days Due", "Contact", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
         jLabel1.setText("LOAN");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -249,38 +249,35 @@ public class LoanAdmin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(476, 476, 476)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(931, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(30, 30, 30)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(91, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(429, 429, 429)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(486, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(79, 79, 79)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(55, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-     Connection con;
-     PreparedStatement insert;
-     
-     private void table_update(){
+    Connection con;
+     PreparedStatement insert; 
+    
+    private void table_update(){
          
       int c;
         
@@ -312,53 +309,30 @@ public class LoanAdmin extends javax.swing.JFrame {
             }
         
         } catch (SQLException ex) {
-            Logger.getLogger(LoanAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoanUser.class.getName()).log(Level.SEVERE, null, ex);
         }
      }
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-
-        DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
-        int selectedIndex = jTable1.getSelectedRow();
-
-        txtcustomernumber.setText(Df.getValueAt(selectedIndex,1).toString());
-        txtfirstname.setText(Df.getValueAt(selectedIndex,2).toString());
-        txtlastname.setText(Df.getValueAt(selectedIndex,3).toString());
-        txtloanamount.setText(Df.getValueAt(selectedIndex,4).toString());
-        txtDate.setText(Df.getValueAt(selectedIndex,5).toString());
-        txtDaysDue.setText(Df.getValueAt(selectedIndex,6).toString());
-        txtcontact.setText(Df.getValueAt(selectedIndex,7).toString());
-        jComboBox1.setSelectedItem(Df.getValueAt(selectedIndex,8).toString());
-    }//GEN-LAST:event_jTable1MouseClicked
-
     private void txtcustomernumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcustomernumberActionPerformed
-   
+
     }//GEN-LAST:event_txtcustomernumberActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
-            int selectedIndex = jTable1.getSelectedRow();            
-            
+            int selectedIndex = jTable1.getSelectedRow();
 
-        
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String strDate = txtDate.getText();
             Date date = new Date(sdf.parse(strDate).getTime());
-           
 
             try {
                 StemControl.faciliateLoan(Integer.valueOf(txtcustomernumber.getText()),
-                        txtfirstname.getText() , txtlastname.getText(),Double.valueOf(txtloanamount.getText()),
-                        date, Integer.valueOf(txtDaysDue.getText()), Integer.valueOf(txtcontact.getText()),
-                        String.valueOf(jComboBox1.getSelectedItem()));
+                    txtfirstname.getText() , txtlastname.getText(),Double.valueOf(txtloanamount.getText()),
+                    date, Integer.valueOf(txtDaysDue.getText()), Integer.valueOf(txtcontact.getText()),
+                    String.valueOf(jComboBox1.getSelectedItem()));
                 JOptionPane.showMessageDialog(this, "Loan Facilitated");
-                 table_update();
-                int newloan= Integer.parseInt(Df.getValueAt(0,0).toString());
-                if(jComboBox1.getSelectedIndex()==1){
-                    StemControl.balanceUpdate(Integer.valueOf(txtcustomernumber.getText()),Double.valueOf(txtloanamount.getText()));
-                }
-               
-
+                table_update();
+                
                 txtcustomernumber.setText("");
                 txtfirstname.setText("");
                 txtlastname.setText("");
@@ -388,18 +362,15 @@ public class LoanAdmin extends javax.swing.JFrame {
             String strDate = txtDate.getText();
             Date date = new Date(sdf.parse(strDate).getTime());
             int loanid = Integer.parseInt(Df.getValueAt(selectedIndex, 0).toString());
-
-             StemControl.updateLoan(loanid,Integer.valueOf(txtcustomernumber.getText()),
-                        txtfirstname.getText() , txtlastname.getText(),Double.valueOf(txtloanamount.getText()),
-                        date, Integer.valueOf(txtDaysDue.getText()), Integer.valueOf(txtcontact.getText()),
-                        String.valueOf(jComboBox1.getSelectedItem()));
-
             
-            table_update();
-             if(jComboBox1.getSelectedIndex()==1){
-                    StemControl.balanceUpdate(Integer.valueOf(txtcustomernumber.getText()),Double.valueOf(txtloanamount.getText()));
-                }
+
+            StemControl.updateLoan(loanid,Integer.valueOf(txtcustomernumber.getText()),
+                txtfirstname.getText() , txtlastname.getText(),Double.valueOf(txtloanamount.getText()),
+                date, Integer.valueOf(txtDaysDue.getText()), Integer.valueOf(txtcontact.getText()),
+                String.valueOf(jComboBox1.getSelectedItem()));
+
             JOptionPane.showMessageDialog(this, "Loan Data updated");
+            table_update();
 
             txtcustomernumber.setText("");
             txtfirstname.setText("");
@@ -424,7 +395,6 @@ public class LoanAdmin extends javax.swing.JFrame {
         try {
 
             int loanid = Integer.parseInt(Df.getValueAt(selectedIndex, 0).toString());
-
             int dialogResult = JOptionPane.showConfirmDialog(null,"Do you want to Delete the loan Data","Warning",JOptionPane.YES_NO_OPTION);
 
             if(dialogResult == JOptionPane.YES_OPTION){
@@ -449,22 +419,34 @@ public class LoanAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txtfirstnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfirstnameActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtfirstnameActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        AdminHome u = new AdminHome();
+        UserHome u = new UserHome();
         u.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void txtcontactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontactActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtcontactActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
+        DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
+        int selectedIndex = jTable1.getSelectedRow();
+        
+        txtcustomernumber.setText(Df.getValueAt(selectedIndex,1).toString());
+        txtfirstname.setText(Df.getValueAt(selectedIndex,2).toString());
+        txtlastname.setText(Df.getValueAt(selectedIndex,3).toString());
+        txtloanamount.setText(Df.getValueAt(selectedIndex,4).toString());
+        txtDate.setText(Df.getValueAt(selectedIndex,5).toString());
+        txtDaysDue.setText(Df.getValueAt(selectedIndex,6).toString());
+        txtcontact.setText(Df.getValueAt(selectedIndex,7).toString());
+        jComboBox1.setSelectedItem(Df.getValueAt(selectedIndex,8).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -479,21 +461,20 @@ public class LoanAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoanAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoanUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoanAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoanUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoanAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoanUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoanAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoanUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoanAdmin().setVisible(true);
+                new LoanUser().setVisible(true);
             }
         });
     }

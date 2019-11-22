@@ -13,7 +13,7 @@ import DatabaseConnection.DBConnect;
  */
 public class StemControl {
     
-    static PreparedStatement ps=null;
+    static PreparedStatement ps,ps1=null;
     static Connection con =null;
     static ResultSet rs = null;
     
@@ -123,5 +123,118 @@ public class StemControl {
         ps.setString(8,status);
         ps.executeUpdate();
     }
- 
+    public static void updateLoan(int loanid,int customernumber,String firstname,String lastname,Double loanAmount,Date loanDate,int noOfDaysDue,int contact,String status) throws SQLException{
+        con = DBConnect.getDatabaseConnection();
+        String query = "UPDATE `loan` SET `firstname`=?,`lastname`=?,`loanAmount`=?,`loanDate`=?,`noOfDaysDue`=?,`contact`=?,`status`=? WHERE `customernumber`=? and loanid=?";
+        ps =con.prepareStatement(query);
+       
+        ps.setString(1,firstname);
+        ps.setString(2, lastname);
+        ps.setDouble(3,loanAmount);
+        ps.setDate(4,loanDate);
+        ps.setInt(5, noOfDaysDue);
+        ps.setInt(6, contact);
+        ps.setString(7,status);
+        ps.setInt(8, customernumber);
+        ps.executeUpdate();
+    }
+    public static void deleteLoanData(int loanid) throws SQLException{
+        con = DBConnect.getDatabaseConnection();
+        String query = "delete from loan where loanid=?";
+        ps =con.prepareStatement(query);
+        ps.setInt(1, loanid);
+        ps.executeUpdate();
+    }
+    public static void balanceUpdate(int customernumber,double loanAmount) throws SQLException{
+        con = DBConnect.getDatabaseConnection();
+        double currentbalance = 0;
+        ps =con.prepareStatement("SELECT customernumber,balance  FROM customer WHERE customernumber=?");
+        ps.setInt(1, customernumber);
+        ps.executeQuery();
+       rs= ps.getResultSet();
+       
+       while(rs.next()){
+        currentbalance = Double.parseDouble(rs.getString("balance"));
+       }
+       currentbalance+=loanAmount;
+      
+       String query = "UPDATE `customer` SET `balance`=? WHERE `customernumber`=?";
+        ps1 =con.prepareStatement(query);
+        ps1.setDouble(1, currentbalance);
+        ps1.setInt(2, customernumber);
+        ps1.executeUpdate();
+    }
+    public static void requestLoan(int customernumber,String firstname,String lastname,Double loanAmount,Date loanDate,int noOfDaysDue,int contact) throws SQLException{
+        con = DBConnect.getDatabaseConnection();
+        String query = "INSERT INTO `loan` (`customernumber`, `firstname`,"
+                + " `lastname`, `loanAmount`, `loanDate`, `noOfDaysDue`, `contact`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        ps =con.prepareStatement(query);
+        ps.setInt(1, customernumber);
+        ps.setString(2,firstname);
+        ps.setString(3, lastname);
+        ps.setDouble(4,loanAmount);
+        ps.setDate(5,loanDate);
+        ps.setInt(6, noOfDaysDue);
+        ps.setInt(7, contact);
+        ps.executeUpdate();
+    }
+    public static int getCurrentCustomer() throws SQLException{
+        con = DBConnect.getDatabaseConnection();
+        int userid = 0;
+        ps =con.prepareStatement("SELECT * FROM `currentcustomer`");
+        ps.executeQuery();
+       rs= ps.getResultSet();
+       
+       while(rs.next()){
+        userid = Integer.parseInt(rs.getString("id"));
+       }
+       return userid;
+    }
+    public static String getCustomerFlag(int id) throws SQLException{
+       con = DBConnect.getDatabaseConnection();
+        String flag = null;
+        ps =con.prepareStatement("SELECT customernumber,flag  FROM customer WHERE customernumber=?");
+        ps.setInt(1, id);
+        ps.executeQuery();
+       rs= ps.getResultSet();
+       
+       while(rs.next()){
+        flag = rs.getString("flag");
+       }
+      return flag;
+    }
+    public static double getCustomerBalance(int id) throws SQLException{
+       con = DBConnect.getDatabaseConnection();
+        double currentbalance = 0;
+        ps =con.prepareStatement("SELECT customernumber,balance  FROM customer WHERE customernumber=?");
+        ps.setInt(1, id);
+        ps.executeQuery();
+       rs= ps.getResultSet();
+       
+       while(rs.next()){
+       currentbalance = Double.parseDouble(rs.getString("balance"));
+       }
+      return currentbalance;
+    }
+    public static void payloan(int customernumber,double balance,double amount,int loanid) throws SQLException{
+        con = DBConnect.getDatabaseConnection();
+        Double currentbalance=balance-amount;
+        String query = "UPDATE `customer` SET `balance`=? WHERE `customernumber`=?";
+        ps1 =con.prepareStatement(query);
+        ps1.setDouble(1, currentbalance);
+        ps1.setInt(2, customernumber);
+        ps1.executeUpdate();
+        
+        String query1= "UPDATE `loan` SET `status` = 'paid' WHERE `loan`.`loanid` = ?";
+        ps =con.prepareStatement(query1);
+        ps.setInt(1, loanid);
+        ps.executeUpdate();   
+    }
+    public static ResultSet checkOverdueLoans() throws SQLException{
+        con = DBConnect.getDatabaseConnection();
+        String query = "SELECT * FROM `loan` WHERE status = 'overdue'";
+        ps =con.prepareStatement(query);
+        rs=ps.executeQuery();
+        return rs;
+    }
 }
